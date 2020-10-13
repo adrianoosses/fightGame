@@ -1,15 +1,36 @@
-h1{
-    color: white;
-    text-align: center;
-}
-h2{
-    color: white;
-    text-align: center;
-}
 body{
     background-color: black;
+    color: white;
+}
+h1, .h2{
+    text-align: center;
 }
 .menu{
-    color: white;
     text-align: center;
+}
+#btnFight{
+    height: 2.5em;
+    width: 5em;
+    background-color: yellow;
+}
+
+#fighter1, #fighter2, #fighter3, #fighter4{
+    height: 10em;
+    width: 8em;
+}
+
+#fighter1{
+    background-color: yellow;
+}
+
+#fighter2{
+    background-color: red;
+}
+
+#fighter3{
+    background-color: green;
+}
+
+#fighter4{
+    background-color: blue;
 }
