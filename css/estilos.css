@@ -34,3 +34,17 @@ h1, .h2{
 #fighter4{
     background-color: blue;
 }
+
+#barraVida1,#barraVida2{
+    height: 2em;
+    width: 20em;
+    background-color: green;
+}
+
+#barraVida2{
+    width: 20em;
+}
+
+#barraVida2{
+    width: 20em;
+}
