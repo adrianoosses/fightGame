@@ -9,12 +9,14 @@ let containerBox2 = document.querySelector(".container2");
 let containerBox3 = document.querySelector(".container3");
 let containerBox4 = document.querySelector(".container4");
 let containerBox5 = document.querySelector(".container5");
+let containerBox6 = document.querySelector(".container6");
 
 containerBox1.style.display = "";
 containerBox2.style.display = "none";
 containerBox3.style.display = "none";
 containerBox4.style.display = "none";
 containerBox5.style.display = "none";
+containerBox6.style.display = "none";
 
 containerBox1.innerHTML = `
         <div class='menu'> \
@@ -28,20 +30,40 @@ containerBox1.innerHTML = `
         `;
         
 
-let id = 0;
+
 containerBox2.innerHTML = `
     <h1>CHOOSE CHARACTER</h1>
     <button onclick="containerBox2.style.display = 'none'; containerBox3.style.display = ''";>
                 FIGHT
         </button>
-    <button id="fighter1" onclick="players[0]= tyler; ">F1</button>
-    <button id="fighter2" onclick="players[1]= jack; ">F2</button>
+    <button id="fighter1" onclick="selection(tyler)">F1</button>
+    <button id="fighter2" onclick="selection(jack)">F2</button>
     <div id="fighter3">F3</div>
     <div id="fighter4">F4</div>
 `;
 
+let id = 0;
+function selection(nombre){
+    players[id] = nombre;
+    if(id==0) id = 1;
+    else id = 0;
+}
+
+
 
 containerBox3.innerHTML = `
+    <h1>MATCHING!</h1>
+    <button onclick="containerBox3.style.display = 'none'; containerBox4.style.display = ''";>
+                FIGHT
+        </button>
+    <P>Player 1 - </p>
+    <p id="p1Luchador"></p>
+    <p>Player 2 . </p>
+    <p id="p2Luchador"></p>
+`;
+
+
+containerBox4.innerHTML = `
 <h1>FIGHT!</h1>
 <div id="player1">
     <div id="lifeP1">
@@ -61,11 +83,11 @@ containerBox3.innerHTML = `
 <button onclick="attack()" id="btnFight">Attack</button>
 `;
 
-containerBox4.innerHTML = `
+containerBox5.innerHTML = `
     <h1>Ha ganado el Jugador 1</h1>
 `;
 
-containerBox5.innerHTML = `
+containerBox6.innerHTML = `
     <h1>Ha ganado el Jugador 2</h1>
 `;
 
@@ -97,6 +119,8 @@ class Player{
 // name, attack, speed, luck, defense
 let tyler = new Fighter("Tyler Durden", 80, 80, 90, 70);
 let jack = new Fighter("Jack", 70, 75, 95, 65);
+let angelFace = new Fighter("Angel Face", 60, 95, 95, 60);
+let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100);
 
 
 /*
@@ -120,8 +144,9 @@ function player2Choose(fighterChosen){
     player2 = new Fighter(fighterChosen);
 }
 */
-
-
+/*
+let playerBox = document.querySelector(".p1Luchador");
+playerBox.value = players[0].name;*/
 //let currentPlayer = player1;
 let turn = 1;
 function attack(){
@@ -134,6 +159,7 @@ function attack(){
         if(players[1].life < 0) console.log("Player 1 wins");
         
         let bar2 = document.querySelector("#barraVida2");
+        if(players[1].life < 0) players[1].life = 0;
         bar2Value = (20/500)*players[1].life + "em";
         bar2.style.width =bar2Value;
         
@@ -146,18 +172,19 @@ function attack(){
         if(players[0].life < 0) console.log("Player 2 wins");
 
         let bar1 = document.querySelector("#barraVida1");
+        if(players[0].life < 0) players[0].life = 0;
         bar1Value = (20/500)*players[0].life + "em";
-        bar1.style.width =bar1Value;
+        bar1.style.width = bar1Value;
 
         turn = 1;
     }
 
     if( players[0].life <= 0 ){
-        containerBox3.style.display = 'none'; 
-        containerBox5.style.display = '';
+        containerBox4.style.display = 'none'; 
+        containerBox6.style.display = '';
     }else if(players[1].life <= 0){
-        containerBox3.style.display = 'none'; 
-        containerBox4.style.display = '';
+        containerBox4.style.display = 'none'; 
+        containerBox5.style.display = '';
     }
     console.log("Vida Player1",players[0].life);
     console.log("Vida Player2",players[1].life);
