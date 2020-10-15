@@ -14,7 +14,7 @@ h1, .h2{
     background-color: yellow;
 }
 
-#fighter1, #fighter2, #fighter3, #fighter4{
+#fighter1, #fighter2, #fighter3, #fighter4, #fighter5, #fighter6{
     height: 10em;
     width: 8em;
 }
@@ -33,6 +33,13 @@ h1, .h2{
 
 #fighter4{
     background-color: blue;
+}
+#fighter5{
+    background-color: pruple;
+}
+
+#fighter6{
+    background-color: gray;
 }
 
 #barraVida1,#barraVida2{
