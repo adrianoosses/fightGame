@@ -14,32 +14,49 @@ h1, .h2{
     background-color: yellow;
 }
 
+.generalContainer{
+    height: 30em;
+    width: 40em;
+    background-color:black;
+    margin: auto;
+    width: 60%;
+    
+}
+.menuSeleccion{
+    display: flex;
+    flex-direction: row;
+}
+.option{
+    width: 120px;
+}
 #fighter1, #fighter2, #fighter3, #fighter4, #fighter5, #fighter6{
-    height: 10em;
-    width: 8em;
+    height: 200px;
+    width: 100px;
+    background-size: 100px 200px;
+    
 }
 
 #fighter1{
-    background-color: yellow;
+    background-image: url("/img/tyler.jpg");
 }
 
 #fighter2{
-    background-color: red;
+    background-image: url("/img/jack.jpg");
 }
 
 #fighter3{
-    background-color: green;
+    background-image: url("/img/angelFace.jpg");
 }
 
 #fighter4{
-    background-color: blue;
+    background-image: url("/img/mechanic.jpg");
 }
 #fighter5{
-    background-color: pruple;
+    background-image: url("/img/meatloaf.jpg");
 }
 
 #fighter6{
-    background-color: gray;
+    background-image: url("/img/thomas.jpg");
 }
 
 #barraVida1,#barraVida2{
@@ -54,4 +71,26 @@ h1, .h2{
 
 #barraVida2{
     width: 20em;
+}
+.btnSelection{
+    align-items: center;
+
+}
+
+#selPlayers{
+    height: 10em;
+    width: 30em;
+    display: flex;
+    /*flex-wrap: wrap; */
+    flex-direction: row;
+    align-items: center;
+    justify-content: justify;
+    flex-flow: column wrap;
+}
+#player1, #player2{
+    width: 50%;
+}
+#menuFightersP1, #menuFightersP2{
+    margin-left: 20px;
+    margin-right: 20px;
 }

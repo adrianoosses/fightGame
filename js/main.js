@@ -23,7 +23,7 @@ containerBox1.innerHTML = `
             <h2>Main menu</h2> \
             <p>1 player</p>
             <button onclick="containerBox1.style.display = 'none'; containerBox2.style.display = ''";>
-                2 arrayFighters
+                2 PLAYERS
                 </button>
             <p>Instructions</p>
         </div>
@@ -71,22 +71,69 @@ let tyler = new Fighter("Tyler Durden", 80, 80, 90, 70);
 let jack = new Fighter("Jack", 70, 75, 95, 65);
 let angelFace = new Fighter("Angel Face", 60, 95, 95, 60);
 let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100);
-let fig5 = new Fighter("Fig5", 95, 50, 96, 80);
-let fig6 = new Fighter("Fig6", 75, 80, 75, 85);
+let meatloaf = new Fighter("Meat Loaf", 95, 50, 96, 80);
+let thomas = new Fighter("Thomas", 75, 80, 75, 85);
 
 //let arrayFighters = [player1, player2];
-
+//style.display='none'
 containerBox2.innerHTML = `
     <h1>CHOOSE CHARACTER</h1>
-    <button onclick="containerBox2.style.display = 'none'; containerBox3.style.display = ''; cargarPersonajes();">
-                FIGHT
+    <div class="menuSeleccion">
+        <div class="option">
+            <button id="fighter1" onclick="selection(tyler); disabled='true'; style.filter='grayscale(100%)';"></button>
+            <p>${tyler.name}</p>
+            <p>Attack:${tyler.attack}</p>
+            <p>Speed: ${tyler.speed}</p>
+            <p>Luck: ${tyler.luck}</p>
+            <p>Defense: ${tyler.defense}</p>
+        </div>
+        <div class="option">
+        <button id="fighter2" onclick="selection(jack); disabled='true'; style.filter='grayscale(100%)';"></button>
+            <p>${jack.name}</p>
+            <p>Attack:${jack.attack}</p>
+            <p>Speed: ${jack.speed}</p>
+            <p>Luck: ${jack.luck}</p>
+            <p>Defense: ${jack.defense}</p>
+        </div>
+        <div class="option">
+        <button id="fighter3" onclick="selection(angelFace); disabled='true'; style.filter='grayscale(100%)';"></button>
+            <p>${angelFace.name}</p>
+            <p>Attack:${angelFace.attack}</p>
+            <p>Speed: ${angelFace.speed}</p>
+            <p>Luck: ${angelFace.luck}</p>
+            <p>Defense: ${angelFace.defense}</p>
+        </div>
+        <div class="option">
+        <button id="fighter4" onclick="selection(mechanic); disabled='true'; style.filter='grayscale(100%)';"></button>
+        <p>${mechanic.name}</p>
+            <p>Attack:${mechanic.attack}</p>
+            <p>Speed: ${mechanic.speed}</p>
+            <p>Luck: ${mechanic.luck}</p>
+            <p>Defense: ${mechanic.defense}</p>
+        </div>
+        <div class="option">
+        <button id="fighter5" onclick="selection(meatloaf); disabled='true'; style.filter='grayscale(100%)';"></button>
+        <p>${meatloaf.name}</p>
+            <p>Attack:${meatloaf.attack}</p>
+            <p>Speed: ${meatloaf.speed}</p>
+            <p>Luck: ${meatloaf.luck}</p>
+            <p>Defense: ${meatloaf.defense}</p>
+        </div>
+        <div class="option">
+        <button id="fighter6" onclick="selection(thomas); disabled='true'; style.filter='grayscale(100%)';"></button>
+        <p>${thomas.name}</p>
+            <p>Attack:${thomas.attack}</p>
+            <p>Speed: ${thomas.speed}</p>
+            <p>Luck: ${thomas.luck}</p>
+            <p>Defense: ${thomas.defense}</p>
+        </div>
+    </div>
+    <div class="btnSelection">
+        <button onclick=" cargarPersonajes();">
+                    FIGHT
         </button>
-    <button id="fighter1" onclick="selection(tyler)">F1</button>
-    <button id="fighter2" onclick="selection(jack)">F2</button>
-    <button id="fighter3" onclick="selection(angelFace)">F3</button>
-    <button id="fighter4" onclick="selection(mechanic)">F4</button>
-    <button id="fighter5" onclick="selection(fig5)">F5</button>
-    <button id="fighter6" onclick="selection(fig6)">F6</button>
+        <div class="msgError"></div>
+    </div>
 `;
 
 
@@ -98,7 +145,9 @@ arrayFighters = [];
 arrayPlayers = [];
 nMaxPlayers = 2;
 nMaxFighters = 3;
+ctrFighters = 0;
 function selection(nombre){
+    //display none
     if(arrayPlayers.length < nMaxPlayers){
         arrayPlayers.push(new Player());
         console.log("Mete player");
@@ -130,44 +179,65 @@ function selection(nombre){
 
 containerBox3.innerHTML = `
     <h1>MATCHING!</h1>
-    <button onclick="containerBox3.style.display = 'none'; containerBox4.style.display = ''";>
+    <div id="selPlayers">
+    <div class="menuFightersP1">
+        <p>Player 1 -</p>
+        <p id="p1f1"></p>
+    </div>
+    <div class="menuFightersP2">
+        <p>Player 2 - </p>
+        <p id="p2f1"></p>
+    </div>
+    </div>
+    <button onclick="containerBox3.style.display = 'none'; 
+                    containerBox4.style.display = '';
+                    let textCombat = document.querySelector('#idCombat');
+                    textCombat.innerHTML = 'Combate 1'">
                 FIGHT
         </button>
-    <P>Player 1 -</p>
-    <p id="p1f1"></p>
-    <p>Player 2 - </p>
-    <p id="p2f1"></p>
 `;
 
 function cargarPersonajes(){
-    console.log("entra en la funcion");
-    let p1f1Box = document.querySelector("#p1f1");
-    let p2f1Box = document.querySelector("#p2f1");
-    p1f1Box.innerHTML = ``;
-    p2f1Box.innerHTML = ``;
-    for(let i = 0; i < 3; i++){
-        p1f1Box.innerHTML += `<p>${arrayPlayers[0].getLuchador()[i].name}</p>`;
-        p2f1Box.innerHTML += `<p>${arrayPlayers[1].getLuchador()[i].name}</p>`;
+    let msgErrorBox = document.querySelector(".msgError");
+    let total = arrayPlayers[0].getLuchador().length + arrayPlayers[1].getLuchador().length;
+    console.log("Num fighetrs:", total);
+    if( total < 6){
+        msgErrorBox.innerHTML = `Elija otro personaje`;
+    } else {
+        containerBox2.style.display = 'none'; 
+        containerBox3.style.display = '';
+        let p1f1Box = document.querySelector("#p1f1");
+        let p2f1Box = document.querySelector("#p2f1");
+        p1f1Box.innerHTML = ``;
+        p2f1Box.innerHTML = ``;
+        for(let i = 0; i < 3; i++){
+            p1f1Box.innerHTML += `<p>${arrayPlayers[0].getLuchador()[i].name}</p>`;
+            p2f1Box.innerHTML += `<p>${arrayPlayers[1].getLuchador()[i].name}</p>`;
+        }
     }
     
 }
 
 containerBox4.innerHTML = `
 <h1>FIGHT!</h1>
-<h2>Combate 1</h2>
-<div id="player1">
-    <div id="lifeP1">
-        <p>Life of Player 1: </p>
-        <input type="text" placeholder="500" id="textLifeP1" name="textLifeP1">
-        <div id="barraVida1">Barra1</div>
-        
+<h2></h2>
+<h2 id=idCombat></h2>
+<div id="selPlayers">
+    <div id="player1">
+        <div id="lifeP1">
+            <p>Life of Player 1: </p>
+            <input type="text" placeholder="500" id="textLifeP1" name="textLifeP1">
+            <div id="barraVida1"></div>
+            
+        </div>
     </div>
-</div>
-<div id="player2">
-    <div id="lifeP2">
-        <p>Life of Player 2: </p>
-        <input type="text" placeholder="500" id="textLifeP2" name="textLifeP2">
-        <div id="barraVida2">Barra2</div>
+
+    <div id="player2">
+        <div id="lifeP2">
+            <p>Life of Player 2: </p>
+            <input type="text" placeholder="500" id="textLifeP2" name="textLifeP2">
+            <div id="barraVida2"></div>
+        </div>
     </div>
 </div>
 <br>
@@ -175,11 +245,11 @@ containerBox4.innerHTML = `
 `;
 
 containerBox5.innerHTML = `
-    <h1>Ha ganado<h1> 
+    <h1>Winner: <h1> 
     <h1 id="winner"></h1>
-    <p>Victorias del Jugador 1</p>
+    <p>Player 1 victories:</p>
     <p id="p1victories"></p>
-    <p">Victorias del Jugador 2</p>
+    <p">Player 2 victories: </p>
     <p id="p2victories"></p>`;
 
 
@@ -221,6 +291,8 @@ let nGames = 0;
 
 function attack(){
     if(nGames < nMaxFighters){
+        let textCombat = document.querySelector("#idCombat");
+        textCombat.innerHTML = `Combat ` + (nGames+1);
         console.log("Player 1:", arrayPlayers[0]);
         console.log("Player 2:", arrayPlayers[1]);
         console.log("ID FIghting", idFighting);
@@ -276,9 +348,9 @@ function attack(){
         p1vic.innerHTML = arrayPlayers[0].getContador();
         p2vic.innerHTML = arrayPlayers[1].getContador();
         if( arrayPlayers[0].getContador() > arrayPlayers[1].getContador() ){
-            winner.innerHTML=`El jugador 1`;
+            winner.innerHTML=`player 1`;
         }else{
-            winner.innerHTML=`El jugador 2`;
+            winner.innerHTML=`player 2`;
         }
             
             
