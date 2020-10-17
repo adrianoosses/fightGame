@@ -30,13 +30,14 @@ containerBox1.innerHTML = `
         `;
         
 class Fighter{
-    constructor( name, attack, speed, luck, defense){
+    constructor( name, attack, speed, luck, defense, avatar){
         this.name = name;
         this.attack = attack;
         this.speed = speed;
         this.luck = luck;
         this.defense = defense;
         this.life = 500;
+        this.avatar = avatar;
 
     }
 
@@ -65,14 +66,17 @@ class Player{
     getContador(){
         return this.contador;
     }
+    getAvatar(){
+        return this.avatar;
+    }
 }
 // name, attack, speed, luck, defense
-let tyler = new Fighter("Tyler Durden", 80, 80, 90, 70);
-let jack = new Fighter("Jack", 70, 75, 95, 65);
-let angelFace = new Fighter("Angel Face", 60, 95, 95, 60);
-let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100);
-let meatloaf = new Fighter("Meat Loaf", 95, 50, 96, 80);
-let thomas = new Fighter("Thomas", 75, 80, 75, 85);
+let tyler = new Fighter("Tyler Durden", 80, 80, 90, 70, "/img/tyler.jpg");
+let jack = new Fighter("Jack", 70, 75, 95, 65, "/img/tyler.jpg");
+let angelFace = new Fighter("Angel Face", 60, 95, 95, 60, "/img/tyler.jpg");
+let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100, "/img/tyler.jpg");
+let meatloaf = new Fighter("Meat Loaf", 95, 50, 96, 80, "/img/tyler.jpg");
+let thomas = new Fighter("Thomas", 75, 80, 75, 85, "/img/tyler.jpg");
 
 //let arrayFighters = [player1, player2];
 //style.display='none'
@@ -224,6 +228,7 @@ containerBox4.innerHTML = `
 <h2 id=idCombat></h2>
 <div id="selPlayers">
     <div id="player1">
+    <div id="avatarP1"></div>
         <div id="lifeP1">
             <p>Life of Player 1: </p>
             <input type="text" placeholder="500" id="textLifeP1" name="textLifeP1">
@@ -291,6 +296,12 @@ let nGames = 0;
 
 function attack(){
     if(nGames < nMaxFighters){
+        let avatarBox1 = document.querySelector("#avatarP1");
+        let avatarBox2 = document.querySelector("#avatarP2");
+        //console.log("Hola:", arrayPlayers[0].getLuchador()[idFighting].avatar);
+        avatarBox1.innerHTML = `<img src="${arrayPlayers[0].getLuchador()[idFighting].avatar}"></img>`;
+        avatarBox2.innerHTML = `<img src="${arrayPlayers[1].getLuchador()[idFighting].avatar}"></img>`;
+        //avatarBox.innerHTML = `tyler`;
         let textCombat = document.querySelector("#idCombat");
         textCombat.innerHTML = `Combat ` + (nGames+1);
         console.log("Player 1:", arrayPlayers[0]);
