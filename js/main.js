@@ -3,6 +3,11 @@
 * - Vida: 0-500
 * - Resto: 0 - 100
 */
+/*
+import * as data from 'tyler.json';
+let tylerJson = data.name;
+console.log("Name Json: ", tylerJson());
+*/
 
 let containerBox1 = document.querySelector(".container1");
 let containerBox2 = document.querySelector(".container2");

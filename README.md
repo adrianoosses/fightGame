@@ -8,11 +8,10 @@ Selecciona la opción deseada.
 ### Seleccione un personaje
 Los dos jugadores podrán elegir alternativamente un total de tres personajes cada uno.
 ### Lucha
-Cada jugador atacará al contrario pulsando el botón de ataque intercambiando el turno en cada pulsación.
+Cada jugador atacará al contrario pulsando el botón de ataque de puñetazo o patada intercambiando el turno en cada pulsación.
 Gana el jugador con mayor batallas ganadas de tres.
 
 ## DESCARGO DE RESPONSABILIDAD
-
 Las imágenes y fuentes de letra se utilizan en este proyecto con fines educativos exclusivamente.
 
 ---
