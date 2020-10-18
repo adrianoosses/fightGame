@@ -82,12 +82,12 @@ class Player{
     }
 }
 // name, attack, speed, luck, defense
-let tyler = new Fighter("Tyler Durden", 80, 80, 90, 70, "/img/tyler.jpg");
-let jack = new Fighter("Jack", 70, 75, 95, 65, "/img/jack.jpg");
-let angelFace = new Fighter("Angel Face", 60, 95, 95, 60, "/img/angelFace.jpg");
-let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100, "/img/mechanic.jpg");
-let meatloaf = new Fighter("Meat Loaf", 95, 50, 96, 80, "/img/meatloaf.jpg");
-let thomas = new Fighter("Thomas", 75, 80, 75, 85, "/img/thomas.jpg");
+let tyler = new Fighter("Tyler Durden", 80, 80, 90, 70, "./img/tyler.jpg");
+let jack = new Fighter("Jack", 70, 75, 95, 65, "./img/jack.jpg");
+let angelFace = new Fighter("Angel Face", 60, 95, 95, 60, "./img/angelFace.jpg");
+let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100, "./img/mechanic.jpg");
+let meatloaf = new Fighter("Meat Loaf", 95, 50, 96, 80, "./img/meatloaf.jpg");
+let thomas = new Fighter("Thomas", 75, 80, 75, 85, "./img/thomas.jpg");
 localStorage.setItem('DatosTyler', JSON.stringify(tyler));
 let tylerRes = JSON.parse(localStorage.getItem('DatosTyler'));
 /*

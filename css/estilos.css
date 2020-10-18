@@ -37,26 +37,26 @@ h1, .h2{
 }
 
 #fighter1{
-    background-image: url("/img/tyler.jpg");
+    background-image: url("./img/tyler.jpg");
 }
 
 #fighter2{
-    background-image: url("/img/jack.jpg");
+    background-image: url("./img/jack.jpg");
 }
 
 #fighter3{
-    background-image: url("/img/angelFace.jpg");
+    background-image: url("./img/angelFace.jpg");
 }
 
 #fighter4{
-    background-image: url("/img/mechanic.jpg");
+    background-image: url("./img/mechanic.jpg");
 }
 #fighter5{
-    background-image: url("/img/meatloaf.jpg");
+    background-image: url("./img/meatloaf.jpg");
 }
 
 #fighter6{
-    background-image: url("/img/thomas.jpg");
+    background-image: url("./img/thomas.jpg");
 }
 
 #barraVida1,#barraVida2{
