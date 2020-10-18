@@ -147,7 +147,7 @@ containerBox2.innerHTML = `
         </div>
     </div>
     <div class="btnSelection">
-        <button onclick=" cargarPersonajes();">
+        <button onclick="loadCharacters();">
                     FIGHT
         </button>
         <div class="msgError"></div>
@@ -201,7 +201,7 @@ containerBox3.innerHTML = `
     </div>
 `;
 
-function cargarPersonajes(){
+function loadCharacters(){
     let msgErrorBox = document.querySelector(".msgError");
     let total = arrayPlayers[0].getLuchador().length + arrayPlayers[1].getLuchador().length;
     console.log("Num fighetrs:", total);
