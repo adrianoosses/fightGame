@@ -46,6 +46,12 @@ class Fighter{
         let punch = ((this.attack*0.7 + this.speed*0.2)/(enemy.defense))*luckFactor*1.2; 
         enemy.life -= parseInt(punch);   
     }
+
+    kickAttack(enemy){
+        let luckFactor = Math.random() * this.luck;
+        let punch = ((this.attack*0.8 + this.speed*0.3)/(enemy.defense))*luckFactor*1; 
+        enemy.life -= parseInt(punch);   
+    }
 }
 
 class Player{
@@ -72,14 +78,12 @@ class Player{
 }
 // name, attack, speed, luck, defense
 let tyler = new Fighter("Tyler Durden", 80, 80, 90, 70, "/img/tyler.jpg");
-let jack = new Fighter("Jack", 70, 75, 95, 65, "/img/tyler.jpg");
-let angelFace = new Fighter("Angel Face", 60, 95, 95, 60, "/img/tyler.jpg");
-let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100, "/img/tyler.jpg");
-let meatloaf = new Fighter("Meat Loaf", 95, 50, 96, 80, "/img/tyler.jpg");
-let thomas = new Fighter("Thomas", 75, 80, 75, 85, "/img/tyler.jpg");
+let jack = new Fighter("Jack", 70, 75, 95, 65, "/img/jack.jpg");
+let angelFace = new Fighter("Angel Face", 60, 95, 95, 60, "/img/angelFace.jpg");
+let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100, "/img/mechanic.jpg");
+let meatloaf = new Fighter("Meat Loaf", 95, 50, 96, 80, "/img/meatloaf.jpg");
+let thomas = new Fighter("Thomas", 75, 80, 75, 85, "/img/thomas.jpg");
 
-//let arrayFighters = [player1, player2];
-//style.display='none'
 containerBox2.innerHTML = `
     <h1>CHOOSE CHARACTER</h1>
     <div class="menuSeleccion">
@@ -143,15 +147,12 @@ containerBox2.innerHTML = `
 
 let currentPlayerId = 0;
 let id = 0;
-//let player1 = new Player(jack);
-//console.log(player1)
 arrayFighters = [];
 arrayPlayers = [];
 nMaxPlayers = 2;
 nMaxFighters = 3;
 ctrFighters = 0;
 function selection(nombre){
-    //display none
     if(arrayPlayers.length < nMaxPlayers){
         arrayPlayers.push(new Player());
         console.log("Mete player");
@@ -169,36 +170,25 @@ function selection(nombre){
         }
         console.log("mete2:",arrayPlayers);
     }
-    //arrayFighters[currentPlayerId].setLuchador(nombre);
-    /*
-    player1.setLuchador(nombre);
-    player1 = new Player(tyler);
-    console.log(player1)
-    if(currentPlayerId == 0){
-        currentPlayerId++;
-    }else{
-        currentPlayerId--;
-    }*/
 }
 
 containerBox3.innerHTML = `
     <h1>MATCHING!</h1>
-    <div id="selPlayers">
-    <div class="menuFightersP1">
-        <p>Player 1 -</p>
-        <p id="p1f1"></p>
+    <div id="selPlayers2">
+        <div class="menuFightersP1">
+            <p>Player 1 -</p>
+            <p id="p1f1"></p>
+        </div>
+        <div class="menuFightersP2">
+            <p>Player 2 - </p>
+            <p id="p2f1"></p>
+        </div>
     </div>
-    <div class="menuFightersP2">
-        <p>Player 2 - </p>
-        <p id="p2f1"></p>
-    </div>
-    </div>
-    <button onclick="containerBox3.style.display = 'none'; 
-                    containerBox4.style.display = '';
-                    let textCombat = document.querySelector('#idCombat');
-                    textCombat.innerHTML = 'Combate 1'">
-                FIGHT
+    <div class="btnArea">
+        <button onclick="loadFighters()">
+                    FIGHT
         </button>
+    </div>
 `;
 
 function cargarPersonajes(){
@@ -226,27 +216,32 @@ containerBox4.innerHTML = `
 <h1>FIGHT!</h1>
 <h2></h2>
 <h2 id=idCombat></h2>
-<div id="selPlayers">
-    <div id="player1">
-    <div id="avatarP1"></div>
-        <div id="lifeP1">
-            <p>Life of Player 1: </p>
-            <input type="text" placeholder="500" id="textLifeP1" name="textLifeP1">
-            <div id="barraVida1"></div>
-            
-        </div>
-    </div>
+<div id="selectionMenu">
+    <div id="selPlayers">
+        <div id="player1">
+            <div id="avatarP1"></div>
+            <div id="lifeP1">
+                <p>Life of Player 1: </p>
+                <input class="textoVida" placeholder="500" id="textLifeP1" name="textLifeP1">
 
-    <div id="player2">
-        <div id="lifeP2">
-            <p>Life of Player 2: </p>
-            <input type="text" placeholder="500" id="textLifeP2" name="textLifeP2">
-            <div id="barraVida2"></div>
+                <div id="barraVida1"></div>
+            </div>
+        </div>
+
+        <div id="player2">
+            <div id="avatarP2"></div>
+            <div id="lifeP2">
+                <p>Life of Player 2: </p>
+                <input class="textoVida" placeholder="500" id="textLifeP2" name="textLifeP2">
+                <div id="barraVida2"></div>
+            </div>
         </div>
     </div>
-</div>
-<br>
-<button onclick="attack()" id="btnFight">Attack</button>
+    <div class="btnAttacks">
+        <button onclick="attack(1)" id="btnFight">Punch</button>
+        <button onclick="attack(2)" id="btnFight">Kick</button>
+    </div>
+</div>    
 `;
 
 containerBox5.innerHTML = `
@@ -258,35 +253,17 @@ containerBox5.innerHTML = `
     <p id="p2victories"></p>`;
 
 
-/*
-let player1;
-let player2 = jack;
-*/
-
-/*
-let player1 = [];
-let player2 = [];
-
-// Hacer find by name 
-
-function player1Choose(fighterChosen){
-    console.log("El jugador 1 elige a: ");
-    player1 = new Fighter(fighterChosen);
+function loadFighters(){
+    
+    let avatarBox1 = document.querySelector("#avatarP1");
+    let avatarBox2 = document.querySelector("#avatarP2");
+    avatarBox1.innerHTML = `<img src="${arrayPlayers[0].getLuchador()[0].avatar}" width="100" height="200"></img>`;
+    avatarBox2.innerHTML = `<img src="${arrayPlayers[1].getLuchador()[0].avatar}" width="100" height="200"></img>`;
+    containerBox3.style.display = 'none'; 
+    containerBox4.style.display = '';
+    let textCombat = document.querySelector('#idCombat');
+    textCombat.innerHTML = 'Combat 1';
 }
-
-function player2Choose(fighterChosen){
-    console.log("El jugador 2 elige a: ");
-    player2 = new Fighter(fighterChosen);
-}
-*/
-/*
-let playerBox = document.querySelector(".p1Luchador");
-playerBox.value = arrayFighters[0].name;*/
-//let currentPlayer = player1;
-
-
-//console.log(arrayFighters[0].name);
-
 
 let turn = 1;
 let nCombat = 0;
@@ -294,14 +271,12 @@ let idFighting = 0;
 let nGames = 0;
 
 
-function attack(){
+function attack(tipo){
     if(nGames < nMaxFighters){
         let avatarBox1 = document.querySelector("#avatarP1");
         let avatarBox2 = document.querySelector("#avatarP2");
-        //console.log("Hola:", arrayPlayers[0].getLuchador()[idFighting].avatar);
-        avatarBox1.innerHTML = `<img src="${arrayPlayers[0].getLuchador()[idFighting].avatar}"></img>`;
-        avatarBox2.innerHTML = `<img src="${arrayPlayers[1].getLuchador()[idFighting].avatar}"></img>`;
-        //avatarBox.innerHTML = `tyler`;
+        avatarBox1.innerHTML = `<img src="${arrayPlayers[0].getLuchador()[idFighting].avatar}" width="100" height="200"></img>`;
+        avatarBox2.innerHTML = `<img src="${arrayPlayers[1].getLuchador()[idFighting].avatar}" width="100" height="200"></img>`;
         let textCombat = document.querySelector("#idCombat");
         textCombat.innerHTML = `Combat ` + (nGames+1);
         console.log("Player 1:", arrayPlayers[0]);
@@ -309,28 +284,35 @@ function attack(){
         console.log("ID FIghting", idFighting);
         if(turn == 1){
             console.log("Player actual 1:", arrayPlayers[0].getLuchador()[idFighting].name);
-            arrayPlayers[0].getLuchador()[idFighting].punchAttack(arrayPlayers[1].getLuchador()[idFighting]);
-            //localStorage.setItem("textLifeP1", player1.life)
+            if(tipo==1){
+                arrayPlayers[0].getLuchador()[idFighting].punchAttack(arrayPlayers[1].getLuchador()[idFighting]);
+            }else{
+                arrayPlayers[0].getLuchador()[idFighting].kickAttack(arrayPlayers[1].getLuchador()[idFighting]);  
+            }
             textLifeP2 = document.getElementById("textLifeP2");
             textLifeP2.value = arrayPlayers[1].getLuchador()[idFighting].life;
             if(arrayPlayers[1].getLuchador()[idFighting].life < 0) console.log("Player 1 wins");
             
             let bar2 = document.querySelector("#barraVida2");
             if(arrayPlayers[1].getLuchador()[idFighting].life < 0) arrayPlayers[1].getLuchador()[idFighting].life = 0;
-            bar2Value = (20/500)*arrayPlayers[0].getLuchador()[idFighting].life + "em";
+            bar2Value = (15/500)*arrayPlayers[0].getLuchador()[idFighting].life + "em";
             bar2.style.width =bar2Value;
             
             turn = 2;
         }else{
             console.log("Player actual 2:", arrayPlayers[1].getLuchador()[idFighting].name);
-            arrayPlayers[1].getLuchador()[idFighting].punchAttack(arrayPlayers[0].getLuchador()[idFighting]);
+            if(tipo==1){
+                arrayPlayers[1].getLuchador()[idFighting].punchAttack(arrayPlayers[0].getLuchador()[idFighting]);
+            } else{
+                arrayPlayers[1].getLuchador()[idFighting].kickAttack(arrayPlayers[0].getLuchador()[idFighting]);
+            }
             textLifeP1 = document.getElementById("textLifeP1");
             textLifeP1.value = arrayPlayers[0].getLuchador()[idFighting].life;
             if(arrayPlayers[0].getLuchador()[idFighting].life < 0) console.log("Player 2 wins");
 
             let bar1 = document.querySelector("#barraVida1");
             if(arrayPlayers[0].getLuchador()[0].life < 0) arrayPlayers[0].getLuchador()[idFighting].life = 0;
-            bar1Value = (20/500)*arrayPlayers[0].getLuchador()[idFighting].life + "em";
+            bar1Value = (15/500)*arrayPlayers[0].getLuchador()[idFighting].life + "em";
             bar1.style.width = bar1Value;
 
             turn = 1;
@@ -362,10 +344,6 @@ function attack(){
             winner.innerHTML=`player 1`;
         }else{
             winner.innerHTML=`player 2`;
-        }
-            
-            
+        }    
     }
-    //console.log("Vida Player1",arrayPlayers[0].getLuchador()[idFighting].life);
-    //console.log("Vida Player2",arrayPlayers[1].getLuchador()[idFighting].life);
 }
