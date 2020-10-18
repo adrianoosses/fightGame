@@ -83,6 +83,11 @@ let angelFace = new Fighter("Angel Face", 60, 95, 95, 60, "/img/angelFace.jpg");
 let mechanic = new Fighter("The Mechanic", 90, 60, 70, 100, "/img/mechanic.jpg");
 let meatloaf = new Fighter("Meat Loaf", 95, 50, 96, 80, "/img/meatloaf.jpg");
 let thomas = new Fighter("Thomas", 75, 80, 75, 85, "/img/thomas.jpg");
+localStorage.setItem('DatosTyler', JSON.stringify(tyler));
+let tylerRes = JSON.parse(localStorage.getItem('DatosTyler'));
+/*
+console.log("Objeto Tyler", tylerObj);
+console.log("Datos Tyler", tyler);*/
 
 containerBox2.innerHTML = `
     <h1>CHOOSE CHARACTER</h1>
