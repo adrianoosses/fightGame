@@ -2,7 +2,8 @@
 ## DESCRIPCIÓN
 Vive trepidantes aventuras disfrutando de este Juego de Lucha implementado en HTML, CSS y JavaScript. Recuerda: la relga número uno del club de la lucha es no hablar del club de la lucha.
 ## INSTRUCCIONES
-Descarga el proyecto y ejecuta index.html
+Opción 1: Descarga el proyecto y ejecuta index.html
+Opción 2: LINK DE GIT PAGES: https://adrianoosses.github.io/fightGame/
 ### Pantalla de Menú
 Selecciona la opción deseada.
 ### Seleccione un personaje
