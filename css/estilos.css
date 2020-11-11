@@ -41,22 +41,22 @@ h1, .h2{
 }
 
 #fighter2{
-    background-image: url("https://raw.githubusercontent.com/adrianoosses/fightGame/master/img/jack.jpg");
+    background-image: url("../img/jack.jpg");
 }
 
 #fighter3{
-    background-image: url("https://raw.githubusercontent.com/adrianoosses/fightGame/master/img/angelFace.jpg");
+    background-image: url("../img/angelFace.jpg");
 }
 
 #fighter4{
-    background-image: url("https://raw.githubusercontent.com/adrianoosses/fightGame/master/img/mechanic.jpg");
+    background-image: url("../img/mechanic.jpg");
 }
 #fighter5{
-    background-image: url("https://raw.githubusercontent.com/adrianoosses/fightGame/master/img/meatloaf.jpg");
+    background-image: url("../img/meatloaf.jpg");
 }
 
 #fighter6{
-    background-image: url("https://raw.githubusercontent.com/adrianoosses/fightGame/master/img/thomas.jpg");
+    background-image: url("../img/thomas.jpg");
     
 }
 
